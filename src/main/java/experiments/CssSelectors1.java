@@ -1,6 +1,7 @@
 package experiments;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -16,6 +17,8 @@ public class CssSelectors1
     {
         driver.get("https://demoqa.com/");
         driver.manage().window().maximize();
+        hideBanner();
+        hideFooter();
 
         WebElement imgTools = driver.findElement(By.cssSelector("img[src='/images/Toolsqa.jpg']"));
         System.out.println(imgTools.getTagName());
@@ -49,6 +52,8 @@ public class CssSelectors1
     {
         driver.get("https://demoqa.com/elements");
         driver.manage().window().maximize();
+        hideBanner();
+        hideFooter();
 
         WebElement btnTextBox = driver.findElement(By.id("item-0"));
         System.out.println("Class: " + btnTextBox.getAttribute("class"));
@@ -75,5 +80,40 @@ public class CssSelectors1
         }
 
         driver.quit();
+    }
+
+    @Test
+    public void selectorsRadioButtonPage()
+    {
+        driver.get("https://demoqa.com/radio-button");
+        driver.manage().window().maximize();
+        hideBanner();
+        hideFooter();
+
+        WebElement btnYes = driver.findElement(By.xpath("//label[@for='yesRadio']"));
+        btnYes.click();
+
+        try
+        {
+            Thread.sleep(2000);
+        }
+        catch (InterruptedException e)
+        {
+            throw new RuntimeException(e);
+        }
+
+        driver.quit();
+    }
+
+    private void hideBanner()
+    {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("document.querySelector('#fixedban').style.display='none'");
+    }
+
+    private void hideFooter()
+    {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("document.querySelector('footer').style.display='none'");
     }
 }
