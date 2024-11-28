@@ -81,7 +81,34 @@ public class XPathSelectors
             throw new RuntimeException(e);
         }
 
-        driver.quit();
+        WebElement PerAdd = driver.findElement(By.xpath("//div[@id='permanentAddress-wrapper']//textarea"));
+        PerAdd.sendKeys("jdkwlolllelwl");
+
+        try
+        {
+            Thread.sleep(2000);
+        }
+        catch (InterruptedException e)
+        {
+            throw new RuntimeException(e);
+        }
+
+        WebElement btnSub = driver.findElement(By.xpath("//button[text()='Submit']"));
+        btnSub.click();
+
+        try
+        {
+            Thread.sleep(2000);
+        }
+        catch (InterruptedException e)
+        {
+            throw new RuntimeException(e);
+        }
+
+        WebElement output = driver.findElement(By.xpath("//div[@id='output']"));
+        System.out.println(output.getText());
+
+       driver.quit();
     }
 
     private void hideBanner()
