@@ -60,6 +60,9 @@ public class PracticeFormPage extends BasePage
     @FindBy(id = "submit")
     WebElement btnSubmit;
 
+    @FindBy(xpath = "//div[text()='Thanks for submitting the form']")
+    WebElement modalWindowMessage;
+
 
     public void typePracticeForm(Student student)
     {
@@ -76,6 +79,11 @@ public class PracticeFormPage extends BasePage
         address.sendKeys(student.getAddress());
         typeStateCity(student.getState(), student.getCity());
         btnSubmit.click();
+    }
+
+    public boolean validateModalMessage(String text)
+    {
+        return validateTextElement(modalWindowMessage, text);
     }
 
     private void typeStateCity(String state, String city)

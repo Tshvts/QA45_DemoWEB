@@ -5,6 +5,7 @@ import enums.Gender;
 import enums.Hobbies;
 import enums.StateCity;
 import manager.AppManager;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.FormsPage;
 import pages.HomePage;
@@ -29,5 +30,6 @@ public class PracticeFromTests extends AppManager
         new HomePage(getDriver()).clickBtnForms();
         new FormsPage(getDriver()).clickBtnPracticeForm();
         new PracticeFormPage(getDriver()).typePracticeForm(student);
+        Assert.assertTrue(new PracticeFormPage(getDriver()).validateModalMessage("Thanks for submitting the form"));
     }
 }
